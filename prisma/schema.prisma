@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model clients {
+  id         Int     @id @default(autoincrement())
+  first_name String? @db.VarChar(30)
+  last_name  String? @db.VarChar(30)
+  cellphone  String  @unique @db.VarChar(10)
+  email      String  @unique @db.VarChar(255)
+}
