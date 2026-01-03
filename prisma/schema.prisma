@@ -7,12 +7,13 @@ datasource db {
 }
 
 model User {
-  id             String    @id @db.VarChar(255)
+  id             String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   name           String?   @db.VarChar(255)
-  email          String    @unique @db.VarChar(255)
+  email          String?   @unique @db.VarChar(255)
   email_verified DateTime? @db.Timestamptz(6)
   image          String?
   role           user_role @default(client)
+  is_active      Boolean   @default(true)
   first_name     String?   @db.VarChar(50)
   last_name      String?   @db.VarChar(50)
   cellphone      String?   @unique @db.VarChar(15)
